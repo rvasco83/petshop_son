@@ -1,0 +1,12 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    Edição de animal
+{% endblock %}
+
+{% block body %}
+    <h1>Editar {{ animal.nome }}</h1>
+    <hr>
+   {% include "animais/_form.html.twig" %}
+
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    Edição de usuário
+{% endblock %}
+
+{% block body %}
+    <h1>Editar {{ usuario.nome }}</h1>
+    <hr>
+    {% include "usuarios/_form.html.twig" %}
+
+{% endblock %}

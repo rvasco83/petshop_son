@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Visualizar animal - {% endblock %}
+
+{% block body %}
+
+    <h1>{{ animal.nome }}</h1>
+    <table class="table table-striped">
+        <tr>
+            <th colspan="2">Dados do animal</th>
+        <tr>
+            <th>Cod.</th>
+            <td>{{ animal.id }}</td>
+        </tr>
+        <tr>
+            <th>Nome</th>
+            <td>{{ animal.nome }}</td>
+        </tr>
+        <tr>
+            <th>Data Nasc.</th>
+            <td>{{ animal.dataNascimento|date("d/m/Y")}}</td>
+        </tr>
+        <tr>
+            <th colspan="2">Proprietário(s)</th>
+        <tr>
+        <tr>
+            <th></th>
+            <td>
+                <ul>
+                    {% for cliente in animal.cliente %}
+                        <li><a href="{{ path('visualizar_animais', {'id': animal.id}) }}">{{ animal.nome }}</a> </li>
+                    {% else %}
+                        <li>
+                            Esse animal não tem nenhum proprietário. <br>
+                            Quer adotá-lo?
+                        </li>
+                    {% endfor %}
+                </ul>
+            </td>
+        </tr>
+    </table>
+    <a href="{{ path('listar_animais') }}" class="btn btn-primary btn">Voltar</a>
+{% endblock %}

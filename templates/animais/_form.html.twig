@@ -1,0 +1,27 @@
+{{ form_start(form, {"attr": {"novalidate": "novalidate"}}) }}
+
+<div class="form-group">
+    {{ form_label(form.nome) }}
+    {{ form_widget(form.nome) }}
+    {{ form_errors(form.nome) }}
+</div>
+
+<div class="form-group">
+    {{ form_label(form.raca) }}
+    {{ form_widget(form.raca) }}
+    {{ form_errors(form.raca) }}
+</div>
+
+<div class="form-group">
+    {{ form_label(form.data_nascimento) }}
+    {{ form_widget(form.data_nascimento) }}
+    {{ form_errors(form.data_nascimento) }}
+</div>
+
+    {{ form_widget (form.enviar) }}
+    <a href="{{ path('listar_animais') }}" class="btn btn-primary btn">Cancelar</a>
+    {{ form_end(form) }}
+
+
+
+

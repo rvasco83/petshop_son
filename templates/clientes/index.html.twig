@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Listagem de Cliente - {% endblock %}
+
+{% block body %}
+    {% for flashMessage in app.session.flashbag.get('success') %}
+        <div class="alert alert-success">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+    {% for flashMessage in app.session.flashbag.get('warning') %}
+        <div class="alert alert-warning">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+    {% for flashMessage in app.session.flashbag.get('danger') %}
+        <div class="alert alert-danger">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+
+    <h1>Listagem de clientes</h1>
+    <hr>
+    <div class="row">
+        <div class="col-md-12">
+            <a href="{{ path('cadastrar_clientes') }}" class="btn btn-primary pull-right">Cadastrar Cliente</a>
+        </div>
+    </div>
+    <table class="table table-hover table-striped mt-3">
+        <thead>
+        <tr>
+            <th>Cod.</th>
+            <th>Nome</th>
+            <th>E-mail</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tdoby>
+            {% for cliente in clientes %}
+            <tr>
+                <td>{{ cliente.id }}</td>
+                <td><a href="{{ path('visualizar_clientes', {'id': cliente.id}) }}">{{ cliente.nome }}</a> </td>
+                <td>{{ cliente.email }}</td>
+                <td>
+                    <a class="btn btn-sm btn-success" href="{{ path('visualizar_clientes', {"id":cliente.id}) }}"> <i class="fa fa-eye"></i> </a>
+                    <a class="btn btn-sm btn-warning" href="{{ path('editar_clientes', {"id": cliente.id}) }}"> <i class="fa fa-pencil"></i> </a>
+                    <a class="btn btn-sm btn-danger bt_excluir_produto" href="{{ path('apagar_clientes', {"id": cliente.id}) }}"> <i class="fa fa-trash"></i> </a>
+                </td>
+            </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">Nenhum registro encontrado!</td>
+                </tr>
+            {% endfor %}
+        </tdoby>
+    </table>
+{% endblock %}

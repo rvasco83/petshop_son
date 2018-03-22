@@ -1,0 +1,48 @@
+security:
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    providers:
+        main:
+            entity:
+                class: App\Entity\Usuario
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            anonymous: true
+
+            # activate different ways to authenticate
+
+            # http_basic: true
+            # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
+
+            form_login:
+                login_path: login
+                check_path: login
+                default_target_path: default
+                always_use_default_target_path: true
+                csrf_token_generator: security.csrf.token_manager
+             # https://symfony.com/doc/current/security/form_login_setup.html
+            logout:
+                path: /logout
+                target: /login
+
+    # Easy way to control access for large sections of your site
+    # Note: Only the *first* access control that matches will be used
+    access_control:
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/usuarios, roles: ROLE_GERENTE }
+        - { path: ^/animais/apagar_animais, roles: ROLE_GERENTE }
+        - { path: ^/clientes/apagar_clientes, roles: ROLE_GERENTE }
+        - { path: ^/, roles: ROLE_USER }
+
+    role_hierarchy:
+        ROLE_ADMIN: ROLE_GERENTE
+        ROLE_GERENTE: ROLE_USER
+
+
+
+    encoders:
+        App\Entity\Usuario:
+            algorithm: bcrypt
+            cost: 12

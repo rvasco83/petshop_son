@@ -1,0 +1,12 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    Edição de cliente -
+{% endblock %}
+
+{% block body %}
+    <h1>Editar - {{ cliente.nome }}</h1>
+    <hr>
+   {% include "clientes/_form.html.twig" %}
+
+{% endblock %}

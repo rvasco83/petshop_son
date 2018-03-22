@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Visualizar usuário - {% endblock %}
+
+{% block body %}
+
+    <h1>{{ usuario.nome }}</h1>
+    <table class="table table-striped">
+        <tr>
+            <th colspan="2">Dados do usuário</th>
+        <tr>
+            <th>Cod.</th>
+            <td>{{ usuario.id }}</td>
+        </tr>
+        <tr>
+            <th>Nome</th>
+            <td>{{ usuario.nome }}</td>
+        </tr>
+        <tr>
+            <th>Username</th>
+            <td>{{ usuario.username}}</td>
+        </tr>
+        <tr>
+            <th colspan="2">Usuário(s)</th>
+        </tr>
+        <tr>
+            <th></th>
+            <td>
+                <lu>
+                    {% for usuario in usuario %}
+                        <li><a href="{{ path('visualizar_usuarios', {'id': usuario.id}) }}">{{ usuario.nome }}</a> </li>
+                    {% else %}
+                        <li>Nenhum usuário cadastrado!</li>
+                    {% endfor %}
+                </lu>
+            </td>
+        </tr>
+    </table>
+    <a href="{{ path('listar_usuarios') }}" class="btn btn-primary btn">Voltar</a>
+    <br>
+    <br>
+{% endblock %}
