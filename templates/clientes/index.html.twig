@@ -44,7 +44,9 @@
                 <td>
                     <a class="btn btn-sm btn-success" href="{{ path('visualizar_clientes', {"id":cliente.id}) }}"> <i class="fa fa-eye"></i> </a>
                     <a class="btn btn-sm btn-warning" href="{{ path('editar_clientes', {"id": cliente.id}) }}"> <i class="fa fa-pencil"></i> </a>
+                    {% if is_granted("ROLE_GERENTE") %}
                     <a class="btn btn-sm btn-danger bt_excluir_produto" href="{{ path('apagar_clientes', {"id": cliente.id}) }}"> <i class="fa fa-trash"></i> </a>
+                    {% endif %}
                 </td>
             </tr>
             {% else %}
